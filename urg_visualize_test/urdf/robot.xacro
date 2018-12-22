@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<robot name="urg_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="visualize" default="false"/>
+  <link name="base_link"/>
+  <joint name="urg_joint" type="fixed">
+    <origin xyz="0.0 0.0 0." rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="urg_link"/>
+  </joint>
+  <link name="urg_link">
+    <visual>
+      <geometry>
+        <box size="0.06 0.06 0.06"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.06 0.06 0.06"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+  <xacro:include filename="$(find urg_visualize_test)/urdf/urg.gazebo.xacro"/>
+  <urg visualize="$(arg visualize)"/>
+</robot>
